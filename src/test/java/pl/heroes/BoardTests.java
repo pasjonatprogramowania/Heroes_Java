@@ -18,6 +18,7 @@ class BoardTests {
         Board board = new Board();
         Point point = new Point(100000, 1000);
         Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
         assertThrows(IllegalArgumentException.class, () -> board.add(point, creature));
     }
 
@@ -28,8 +29,10 @@ class BoardTests {
         Point point2 = new Point(1, 1);
         Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
         Creature creature2 = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
         board.add(point, creature);
         board.add(point2, creature2);
+
         assertThrows(IllegalArgumentException.class, () -> board.add(point, creature));
     }
 
@@ -41,7 +44,21 @@ class BoardTests {
 
         board.add(point, creature);
         Creature creatureFromBoard = board.get(point.getX(), point.getY());
+
         assertEquals(creature, creatureFromBoard);
 
+    }
+
+    @Test
+    void shouldMoveCreatureToNewEmptyField() {
+        Board board = new Board();
+        Point point = new Point(1, 1);
+        Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
+        board.add(point, creature);
+        board.move(point, new Point(2, 2));
+        Creature creatureFromBoard = board.get(2, 2);
+
+        assertEquals(creature, creatureFromBoard);
     }
 }

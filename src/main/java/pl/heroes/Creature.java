@@ -1,8 +1,11 @@
 package pl.heroes;
 
-public class Creature {
+class Creature {
+    private final CreatureStatistics stats;
 
-    Creature(_name, _attack, _defence, _MaxHp) {
-
+    public Creature(String _name, int _attack, int _defence, int _maxHp) {
+        stats = new CreatureStatistics(_name, _attack, _defence, _maxHp);
     }
+
+
 }

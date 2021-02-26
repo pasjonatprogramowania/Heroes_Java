@@ -1,5 +1,7 @@
+package pl.heroes;
+
 import org.junit.jupiter.api.Test;
-import pl.heroes.Point;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

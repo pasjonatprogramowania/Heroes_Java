@@ -1,4 +1,4 @@
-import pl.heroes.Creature;
+package pl.heroes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
