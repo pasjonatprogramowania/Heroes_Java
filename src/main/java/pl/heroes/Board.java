@@ -5,9 +5,9 @@ import java.util.Map;
 
 class Board {
 
+    private static int boardX = 20;
+    private static int boardY = 15;
     private Map<Point, Creature> map;
-    private int boardX = 20;
-    private int boardY = 15;
 
     Board() {
         map = new HashMap<>();

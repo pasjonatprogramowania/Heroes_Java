@@ -2,10 +2,11 @@ package pl.heroes;
 
 public class CreatureStatistics {
 
-    String name;
-    int attack;
-    int defence;
-    int maxHp;
+
+    final private String name;
+    final private int attack;
+    final private int defence;
+    final private int maxHp;
 
 
     public CreatureStatistics(String _name, int _attack, int _defence, int _maxHp) {
@@ -19,32 +20,19 @@ public class CreatureStatistics {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getAttack() {
         return attack;
     }
 
-    public void setAttack(int attack) {
-        this.attack = attack;
-    }
 
     public int getDefence() {
         return defence;
     }
 
-    public void setDefence(int defence) {
-        this.defence = defence;
-    }
 
     public int getMaxHp() {
         return maxHp;
-    }
-
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
     }
 
 }
