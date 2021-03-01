@@ -2,8 +2,7 @@ package pl.heroes;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class BoardTests {
@@ -12,6 +11,12 @@ class BoardTests {
     public static final int DEFENCE = 5;
     public static final int ATTACK = 5;
     public static final String DEAFAULT = "Deafault";
+
+    @Test
+    void shouldReturnNullForEmptyFiled() {
+        Board board = new Board();
+        assertNull(board.get(1, 1));
+    }
 
     @Test
     void shouldNotAddCreatureToTileNotOnBoard() {
@@ -31,9 +36,8 @@ class BoardTests {
         Creature creature2 = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
 
         board.add(point, creature);
-        board.add(point2, creature2);
 
-        assertThrows(IllegalArgumentException.class, () -> board.add(point, creature));
+        assertThrows(IllegalArgumentException.class, () -> board.add(point2, creature2));
     }
 
     @Test
@@ -60,5 +64,31 @@ class BoardTests {
         Creature creatureFromBoard = board.get(2, 2);
 
         assertEquals(creature, creatureFromBoard);
+    }
+
+    @Test
+    void shouldNotMoveCreatureOnTileWithAnotherCreature() {
+        Board board = new Board();
+        Point point = new Point(1, 1);
+        Point point2 = new Point(2, 2);
+        Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+        Creature creature2 = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
+        board.add(point, creature);
+        board.add(point2, creature2);
+
+        assertThrows(IllegalArgumentException.class, () -> board.move(point, new Point(2, 2)));
+    }
+
+    @Test
+    void shouldReturnPointByCreature() {
+        Board board = new Board();
+        Point point = new Point(1, 1);
+        Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
+        board.add(point, creature);
+        Point pointCreature = board.get(creature);
+
+        assertEquals(point, pointCreature);
     }
 }
