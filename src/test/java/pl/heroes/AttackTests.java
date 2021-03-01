@@ -3,19 +3,18 @@ package pl.heroes;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class AttackTests {
 
     @Test
     void attackerShouldDealDamage() {
         Creature attacker = new Creature("att", 5, 1, 100);
-        Creature defender = new Creature("def", 1, 1, 100);
+        Creature defender = new Creature("def", 0, 0, 100);
 
         int defHp = defender.getCurrentHp();
         attacker.attack(defender);
 
-        assertNotSame(defHp, defender.getCurrentHp());
+        assertEquals(defender.getCurrentHp(), 95);
     }
 
     @Test
@@ -26,7 +25,7 @@ public class AttackTests {
         attacker.attack(defender);
         int defHp = defender.getCurrentHp();
 
-        assertEquals(defHp, defender.stats.getMaxHp());
+        assertEquals(defHp, defender.getMaxHp());
     }
 
     @Test

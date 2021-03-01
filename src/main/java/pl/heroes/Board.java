@@ -5,8 +5,9 @@ import java.util.Map;
 
 class Board {
 
-    private static int boardX = 20;
-    private static int boardY = 15;
+
+    static int WIDTH = 20;
+    static int HEIGHT = 15;
     private Map<Point, Creature> map;
 
     Board() {
@@ -24,12 +25,25 @@ class Board {
         return map.get(new Point(_x, _y));
     }
 
+    Point get(Creature _creature) {
+        for (Map.Entry<Point, Creature> entry : map.entrySet()) {
+            if (_creature.equals(entry.getValue())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
     private void isThisTileTaken(Point _point) {
         if (map.containsKey(_point)) throw new IllegalArgumentException();
     }
 
     private void isThisTileOnMap(Point _point) {
-        if (_point.getY() > boardY || _point.getX() > boardX) throw new IllegalArgumentException();
+        if (_point.getY() > HEIGHT || _point.getX() > WIDTH) throw new IllegalArgumentException();
+    }
+
+    void move(Creature _creature, Point _newPoint) {
+        move(get(_creature), _newPoint);
     }
 
     void move(Point _point, Point _newPoint) {
@@ -40,4 +54,5 @@ class Board {
         map.remove(_point);
         map.put(_newPoint, creature);
     }
+
 }

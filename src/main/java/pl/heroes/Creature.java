@@ -7,6 +7,7 @@ class Creature {
     public static final String DEAFAULT = "Deafault";
     final CreatureStatistics stats;
     private int currentHp;
+    private boolean wasCounterAttack = false;
 
     Creature() {
         stats = new CreatureStatistics(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
@@ -17,27 +18,37 @@ class Creature {
         currentHp = stats.getMaxHp();
     }
 
-    int calculateDamage() {
-        int calculatedDamage = this.stats.getAttack() - this.stats.getDefence();
-        if (this.stats.getAttack() - this.stats.getDefence() < 0) {
-            return 0;
-        } else {
-            return calculatedDamage;
-        }
+    private int calculateDamage(Creature _defender) {
+        int calculatedDamage = this.getAttack() - _defender.getDefence();
+        if (calculatedDamage < 0) return 0;
+        else return calculatedDamage;
     }
 
     void attack(Creature _defender) {
-        _defender.applayDamage(this.calculateDamage());
-        if (_defender.isAlive()) {
-            this.counterAttack(_defender);
+        if (this.isAlive()) {
+            int calcDamage = this.calculateDamage(_defender);
+            _defender.applyDamage(calcDamage);
+            if (_defender.isAlive() && !_defender.wasCounterAttack) {
+                this.counterAttack(_defender);
+            }
         }
     }
 
     void counterAttack(Creature _defender) {
-        this.applayDamage(_defender.calculateDamage());
+        int calcDamage = _defender.calculateDamage(this);
+        this.applyDamage(calcDamage);
+        _defender.changeCounterAttackFlag();
     }
 
-    void applayDamage(int _damageToDeal) {
+    private void changeCounterAttackFlag() {
+        this.wasCounterAttack = !this.wasCounterAttack;
+    }
+
+    private boolean isAlive() {
+        return this.getCurrentHp() > 0;
+    }
+
+    void applyDamage(int _damageToDeal) {
         this.currentHp -= _damageToDeal;
     }
 
@@ -45,10 +56,6 @@ class Creature {
         return currentHp;
     }
 
-    private boolean isAlive() {
-        return this.getCurrentHp() > 0;
-    }
-    
     public String getName() {
         return this.stats.getName();
     }

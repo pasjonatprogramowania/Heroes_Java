@@ -79,4 +79,16 @@ class BoardTests {
 
         assertThrows(IllegalArgumentException.class, () -> board.move(point, new Point(2, 2)));
     }
+
+    @Test
+    void shouldReturnPointByCreature() {
+        Board board = new Board();
+        Point point = new Point(1, 1);
+        Creature creature = new Creature(DEAFAULT, ATTACK, DEFENCE, MAX_HP);
+
+        board.add(point, creature);
+        Point pointCreature = board.get(creature);
+
+        assertEquals(point, pointCreature);
+    }
 }
