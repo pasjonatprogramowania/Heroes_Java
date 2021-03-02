@@ -2,29 +2,21 @@ package pl.heroes;
 
 import java.util.Objects;
 
-class Point {
-    private int x;
-    private int y;
+public class Point {
+    final private int x;
+    final private int y;
 
     public Point(int _x, int _y) {
         x = _x;
         y = _y;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
+    int getX() {
         return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
     }
 
     @Override

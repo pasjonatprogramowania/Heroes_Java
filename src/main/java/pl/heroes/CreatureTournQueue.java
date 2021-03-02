@@ -29,6 +29,6 @@ class CreatureTournQueue {
         if (creatureQueue.isEmpty()) {
             initQueue();
         }
-        activeCreature = creatureQueue.poll();
+        activeCreature = creatureQueue. ();
     }
 }

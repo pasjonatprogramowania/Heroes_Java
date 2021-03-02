@@ -1,10 +1,10 @@
 package pl.heroes;
 
 class Creature {
-    public static final int MAX_HP = 5;
-    public static final int DEFENCE = 5;
-    public static final int ATTACK = 5;
-    public static final String DEAFAULT = "Deafault";
+    private static final int MAX_HP = 5;
+    private static final int DEFENCE = 5;
+    private static final int ATTACK = 5;
+    private static final String DEAFAULT = "Deafault";
     final CreatureStatistics stats;
     private int currentHp;
     private boolean wasCounterAttack = false;
@@ -56,22 +56,22 @@ class Creature {
         return currentHp;
     }
 
-    public String getName() {
+    String getName() {
         return this.stats.getName();
     }
 
 
-    public int getAttack() {
+    int getAttack() {
         return this.stats.getAttack();
     }
 
 
-    public int getDefence() {
+    int getDefence() {
         return this.stats.getDefence();
     }
 
 
-    public int getMaxHp() {
+    int getMaxHp() {
         return this.stats.getMaxHp();
     }
 
