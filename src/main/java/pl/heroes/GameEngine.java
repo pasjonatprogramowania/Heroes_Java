@@ -30,11 +30,17 @@ public class GameEngine {
 
     public void move(Point _newPoint) {
         Creature activeCreature = queue.getActiveCreature();
+        board.move(activeCreature, _newPoint);
         queue.next();
-        board.move(board.get(activeCreature), _newPoint);
     }
 
     public void pass() {
+        queue.next();
+    }
+
+    public void attack(int _x, int _y) {
+        Creature activeCreature = queue.getActiveCreature();
+        activeCreature.attack(board.get(_x, _y));
         queue.next();
     }
 }

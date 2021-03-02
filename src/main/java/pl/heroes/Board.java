@@ -6,8 +6,8 @@ import java.util.Map;
 class Board {
 
 
-    static int WIDTH = 20;
-    static int HEIGHT = 15;
+    public final static int WIDTH = 20;
+    public final static int HEIGHT = 15;
     private Map<Point, Creature> map;
 
     Board() {
