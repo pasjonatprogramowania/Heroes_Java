@@ -39,8 +39,10 @@ public class GameEngine {
     }
 
     public void attack(int _x, int _y) {
-        Creature activeCreature = queue.getActiveCreature();
-        activeCreature.attack(board.get(_x, _y));
-        queue.next();
+        if (board.canAttack(_x, _y)) {
+            Creature activeCreature = queue.getActiveCreature();
+            activeCreature.attack(board.get(_x, _y));
+            queue.next();
+        }
     }
 }

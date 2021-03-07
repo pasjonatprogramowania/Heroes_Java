@@ -34,6 +34,10 @@ class Board {
         return null;
     }
 
+    boolean canAttack(int _x, int _y) {
+        return map.containsKey(new Point(_x, _y));
+    }
+
     private void isThisTileTaken(Point _point) {
         if (map.containsKey(_point)) throw new IllegalArgumentException();
     }

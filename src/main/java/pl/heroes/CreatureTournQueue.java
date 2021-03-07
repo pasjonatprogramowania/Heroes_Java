@@ -29,6 +29,8 @@ class CreatureTournQueue {
         if (creatureQueue.isEmpty()) {
             initQueue();
         }
-        activeCreature = creatureQueue. ();
+        activeCreature = creatureQueue.poll();
+        assert activeCreature != null;
+        activeCreature.changeCounterAttackFlag();
     }
 }

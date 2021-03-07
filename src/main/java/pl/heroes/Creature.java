@@ -40,7 +40,7 @@ class Creature {
         _defender.changeCounterAttackFlag();
     }
 
-    private void changeCounterAttackFlag() {
+    void changeCounterAttackFlag() {
         this.wasCounterAttack = !this.wasCounterAttack;
     }
 
@@ -60,16 +60,13 @@ class Creature {
         return this.stats.getName();
     }
 
-
     int getAttack() {
         return this.stats.getAttack();
     }
 
-
     int getDefence() {
         return this.stats.getDefence();
     }
-
 
     int getMaxHp() {
         return this.stats.getMaxHp();
